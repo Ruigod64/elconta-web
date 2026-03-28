@@ -1,0 +1,189 @@
+/* ============================================
+   LEGACY BROWSER SUPPORT
+   Fallbacks para navegadores que no soporten
+   características modernas de CSS
+   ============================================ */
+
+/* --- backdrop-filter fallback --- */
+@supports not (backdrop-filter: blur(1px)) {
+  .nav.scrolled {
+    background: rgba(10, 10, 10, 0.98);
+  }
+}
+
+/* --- CSS custom properties fallback --- */
+@supports not (color: var(--color-black)) {
+  body {
+    background-color: #0a0a0a;
+    color: #f0e6cc;
+    font-family: Georgia, serif;
+  }
+
+  .btn--primary {
+    background: #c9960c;
+    color: #0a0a0a;
+  }
+
+  .menu__card {
+    background: #161600;
+    border: 1px solid rgba(201,150,12,0.25);
+  }
+
+  .hero__title {
+    font-size: 4rem;
+    color: #fdf3dc;
+  }
+}
+
+/* --- clip-path para texto degradado fallback --- */
+@supports not (-webkit-background-clip: text) {
+  .hero__title em {
+    color: #ff8c00;
+    background: none;
+    -webkit-text-fill-color: unset;
+  }
+
+  .section-title em {
+    color: #e8b31a;
+    background: none;
+    -webkit-text-fill-color: unset;
+  }
+}
+
+/* --- Parallax via transform: no soportado en Safari < 13 --- */
+@supports not (will-change: transform) {
+  .hero__parallax-bg {
+    background-attachment: fixed;
+    inset: 0;
+  }
+}
+
+/* --- CSS Grid fallback para navegadores viejos --- */
+@supports not (display: grid) {
+  .hero__content {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 2rem;
+  }
+
+  .about__grid {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 2rem;
+  }
+
+  .about__grid > * {
+    flex: 1 1 300px;
+  }
+
+  .menu__pizzas {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 1rem;
+  }
+
+  .menu__pizzas > * {
+    flex: 1 1 280px;
+  }
+
+  .menu__halves {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 1rem;
+  }
+
+  .menu__halves > * {
+    flex: 1 1 280px;
+  }
+
+  .footer__inner {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 2rem;
+  }
+
+  .footer__inner > * {
+    flex: 1 1 200px;
+  }
+
+  .contact__grid {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 2rem;
+  }
+
+  .contact__grid > * {
+    flex: 1 1 300px;
+  }
+
+  /* Nuevas secciones */
+  .specialties__grid {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 1rem;
+  }
+
+  .specialties__grid > * {
+    flex: 1 1 280px;
+    min-height: 280px;
+  }
+
+  .process__step {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 1rem;
+    align-items: center;
+  }
+}
+
+/* --- animation fallback --- */
+@supports not (animation-name: scrollReviews) {
+  .reviews__track {
+    display: flex;
+    flex-wrap: wrap;
+    animation: none;
+  }
+}
+
+/* --- Object-fit para IE --- */
+@supports not (object-fit: cover) {
+  .about__img-frame img {
+    height: auto;
+    width: 100%;
+  }
+
+  .hero__chef-img-wrap img {
+    height: auto;
+  }
+}
+
+/* --- position: sticky fallback --- */
+@supports not (position: sticky) {
+  .nav {
+    position: fixed;
+  }
+}
+
+/* --- clamp() fallback --- */
+@supports not (font-size: clamp(1rem, 2vw, 3rem)) {
+  .hero__title { font-size: 5rem; }
+  .section-title { font-size: 3rem; }
+
+  @media (max-width: 768px) {
+    .hero__title { font-size: 3.2rem; }
+    .section-title { font-size: 2rem; }
+  }
+
+  @media (max-width: 480px) {
+    .hero__title { font-size: 2.6rem; }
+  }
+}
+
+/* --- Aspect ratio fallback --- */
+@supports not (aspect-ratio: 16/9) {
+  .contact__map-frame::before {
+    content: '';
+    display: block;
+    padding-top: 56.25%;
+  }
+}

@@ -1,0 +1,211 @@
+/* ============================================
+   PRELOADER — El Conta Pizzas
+   ============================================ */
+
+#preloader {
+  position: fixed;
+  inset: 0;
+  z-index: 99999;
+  background: var(--color-black);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 2rem;
+  transition: opacity 0.6s cubic-bezier(0.16, 1, 0.3, 1),
+              visibility 0.6s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+#preloader.hidden {
+  opacity: 0;
+  visibility: hidden;
+  pointer-events: none;
+}
+
+/* Logo animado */
+.preloader__logo {
+  position: relative;
+  width: 90px;
+  height: 90px;
+}
+
+.preloader__logo img {
+  width: 90px;
+  height: 90px;
+  object-fit: contain;
+  border-radius: 50%;
+  animation: preloaderSpin 8s linear infinite;
+  filter: drop-shadow(0 0 16px rgba(201,150,12,0.6));
+}
+
+@keyframes preloaderSpin {
+  from { transform: rotate(0deg); }
+  to   { transform: rotate(360deg); }
+}
+
+/* Anillo de fuego */
+.preloader__ring {
+  position: absolute;
+  inset: -6px;
+  border-radius: 50%;
+  border: 2px solid transparent;
+  border-top-color: var(--color-gold);
+  border-right-color: var(--color-amber);
+  animation: preloaderRing 1.4s cubic-bezier(0.68, -0.55, 0.27, 1.55) infinite;
+}
+
+.preloader__ring--2 {
+  inset: -12px;
+  border-top-color: transparent;
+  border-bottom-color: var(--color-gold-light);
+  border-left-color: var(--color-orange);
+  animation-duration: 2s;
+  animation-direction: reverse;
+}
+
+@keyframes preloaderRing {
+  from { transform: rotate(0deg); }
+  to   { transform: rotate(360deg); }
+}
+
+/* Texto */
+.preloader__name {
+  font-family: var(--font-display);
+  font-size: 1.8rem;
+  font-weight: 700;
+  color: var(--color-cream);
+  letter-spacing: 0.04em;
+  animation: preloaderPulse 1.8s ease-in-out infinite;
+}
+
+.preloader__name em {
+  font-style: italic;
+  background: var(--grad-fire);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+
+.preloader__slogan {
+  font-family: var(--font-heading);
+  font-size: 0.65rem;
+  letter-spacing: 0.35em;
+  text-transform: uppercase;
+  color: var(--color-text-muted);
+  margin-top: -1.5rem;
+  animation: preloaderPulse 1.8s ease-in-out infinite 0.4s;
+}
+
+@keyframes preloaderPulse {
+  0%, 100% { opacity: 0.5; }
+  50%       { opacity: 1; }
+}
+
+/* Barra de progreso */
+.preloader__bar {
+  width: 180px;
+  height: 2px;
+  background: rgba(201,150,12,0.15);
+  border-radius: 2px;
+  overflow: hidden;
+}
+
+.preloader__bar-fill {
+  height: 100%;
+  background: var(--grad-gold);
+  border-radius: 2px;
+  width: 0%;
+  transition: width 0.4s ease;
+  box-shadow: 0 0 8px rgba(201,150,12,0.5);
+}
+
+/* Puntos de carga */
+.preloader__dots {
+  display: flex;
+  gap: 6px;
+  align-items: center;
+}
+
+.preloader__dot {
+  width: 5px;
+  height: 5px;
+  border-radius: 50%;
+  background: var(--color-gold);
+  animation: dotBounce 1.2s ease-in-out infinite;
+}
+
+.preloader__dot:nth-child(2) { animation-delay: 0.15s; background: var(--color-amber); }
+.preloader__dot:nth-child(3) { animation-delay: 0.30s; background: var(--color-gold-light); }
+
+@keyframes dotBounce {
+  0%, 80%, 100% { transform: scale(0.6); opacity: 0.4; }
+  40%           { transform: scale(1.2); opacity: 1; }
+}
+
+/* ============================================
+   TOAST NOTIFICATIONS
+   ============================================ */
+#toast-container {
+  position: fixed;
+  bottom: 5rem;
+  left: 50%;
+  transform: translateX(-50%);
+  z-index: 99998;
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+  align-items: center;
+  pointer-events: none;
+}
+
+.toast {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  padding: 0.65rem 1.25rem;
+  border-radius: 999px;
+  background: rgba(22, 22, 22, 0.96);
+  border: 1px solid var(--color-border);
+  backdrop-filter: blur(20px);
+  -webkit-backdrop-filter: blur(20px);
+  font-family: var(--font-heading);
+  font-size: 0.78rem;
+  letter-spacing: 0.06em;
+  color: var(--color-cream);
+  box-shadow: 0 4px 20px rgba(0,0,0,0.4), var(--shadow-gold);
+  animation: toastIn 0.4s cubic-bezier(0.34, 1.56, 0.64, 1) forwards;
+  pointer-events: auto;
+  white-space: nowrap;
+  max-width: 90vw;
+}
+
+.toast--exit {
+  animation: toastOut 0.3s ease forwards;
+}
+
+.toast__icon {
+  font-size: 1rem;
+  flex-shrink: 0;
+}
+
+@keyframes toastIn {
+  from { opacity: 0; transform: translateY(12px) scale(0.92); }
+  to   { opacity: 1; transform: translateY(0)   scale(1); }
+}
+
+@keyframes toastOut {
+  from { opacity: 1; transform: translateY(0)   scale(1); }
+  to   { opacity: 0; transform: translateY(-8px) scale(0.95); }
+}
+
+/* ============================================
+   MOBILE responsive preloader
+   ============================================ */
+@media (max-width: 480px) {
+  .preloader__logo  { width: 72px; height: 72px; }
+  .preloader__logo img { width: 72px; height: 72px; }
+  .preloader__name  { font-size: 1.5rem; }
+  .preloader__bar   { width: 140px; }
+  #toast-container  { bottom: 4.5rem; }
+  .toast            { font-size: 0.72rem; padding: 0.55rem 1rem; }
+}

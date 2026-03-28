@@ -1,0 +1,795 @@
+/* ============================================
+   SECCIÓN PROCESO — Cómo hacemos la pizza
+   ============================================ */
+.process {
+  padding-block: var(--space-2xl);
+  background: var(--color-black);
+  position: relative;
+  overflow: hidden;
+}
+
+/* Línea decorativa vertical central */
+.process__timeline {
+  position: relative;
+  max-width: 780px;
+  margin-inline: auto;
+}
+
+.process__timeline::before {
+  content: '';
+  position: absolute;
+  left: 50%;
+  top: 0;
+  bottom: 0;
+  width: 1px;
+  background: linear-gradient(to bottom, transparent, var(--color-gold), var(--color-amber), var(--color-gold), transparent);
+  transform: translateX(-50%);
+}
+
+.process__step {
+  display: grid;
+  grid-template-columns: 1fr 60px 1fr;
+  align-items: center;
+  gap: 0;
+  margin-bottom: var(--space-lg);
+  position: relative;
+}
+
+/* Pasos en posición alterna */
+.process__step:nth-child(even) .process__step-content {
+  order: 3;
+  text-align: left;
+}
+
+.process__step:nth-child(even) .process__step-void {
+  order: 1;
+}
+
+.process__step:nth-child(odd) .process__step-content {
+  order: 1;
+  text-align: right;
+}
+
+.process__step:nth-child(odd) .process__step-void {
+  order: 3;
+}
+
+.process__step-dot {
+  order: 2;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 2;
+}
+
+.process__step-dot-inner {
+  width: 52px;
+  height: 52px;
+  border-radius: 50%;
+  background: var(--color-black-soft);
+  border: 2px solid var(--color-gold);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 1.4rem;
+  box-shadow: 0 0 20px rgba(201,150,12,0.35);
+  transition: all var(--transition-slow);
+  flex-shrink: 0;
+}
+
+.process__step:hover .process__step-dot-inner {
+  background: var(--color-gold);
+  box-shadow: 0 0 40px rgba(201,150,12,0.7);
+  transform: scale(1.15);
+}
+
+.process__step-content {
+  padding-inline: var(--space-md);
+}
+
+.process__step-num {
+  font-family: var(--font-display);
+  font-size: 0.75rem;
+  font-weight: 400;
+  color: var(--color-gold);
+  opacity: 0.6;
+  letter-spacing: 0.15em;
+  display: block;
+  margin-bottom: 4px;
+}
+
+.process__step-title {
+  font-family: var(--font-heading);
+  font-size: 1.1rem;
+  font-weight: 600;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  color: var(--color-cream);
+  margin-bottom: 6px;
+}
+
+.process__step-desc {
+  font-size: 0.88rem;
+  color: var(--color-text-muted);
+  line-height: 1.7;
+}
+
+.process__step-void { /* espacio vacío en lado opuesto */ }
+
+/* RESPONSIVE PROCESO — ver mobile.css */
+
+/* ============================================
+   ESPECIALIDADES — Spotlight de pizzas
+   ============================================ */
+.specialties {
+  padding-block: var(--space-2xl);
+  background: var(--color-black-soft);
+  position: relative;
+  overflow: hidden;
+}
+
+.specialties::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 1px;
+  background: linear-gradient(90deg, transparent, var(--color-amber), transparent);
+}
+
+.specialties__grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: var(--space-md);
+  margin-top: var(--space-lg);
+}
+
+/* Tarjeta grande (primera) */
+.spec-card {
+  position: relative;
+  border-radius: var(--radius-lg);
+  overflow: hidden;
+  min-height: 360px;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-end;
+  cursor: pointer;
+  transition: transform var(--transition-slow);
+}
+
+.spec-card:hover {
+  transform: translateY(-6px);
+}
+
+.spec-card--featured {
+  grid-row: span 2;
+  min-height: 100%;
+}
+
+/* Fondo de la tarjeta */
+.spec-card__bg {
+  position: absolute;
+  inset: 0;
+  background-size: cover;
+  background-position: center;
+  transition: transform var(--transition-medium);
+  z-index: 0;
+}
+
+.spec-card:hover .spec-card__bg {
+  transform: scale(1.06);
+}
+
+/* Overlay */
+.spec-card__overlay {
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(to top, rgba(0,0,0,0.95) 0%, rgba(0,0,0,0.5) 50%, rgba(0,0,0,0.1) 100%);
+  z-index: 1;
+  transition: background var(--transition-slow);
+}
+
+.spec-card:hover .spec-card__overlay {
+  background: linear-gradient(to top, rgba(20,8,0,0.97) 0%, rgba(10,4,0,0.6) 50%, rgba(0,0,0,0.15) 100%);
+}
+
+/* Contenido */
+.spec-card__content {
+  position: relative;
+  z-index: 2;
+  padding: var(--space-md);
+}
+
+.spec-card__badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 5px;
+  background: var(--grad-gold);
+  color: var(--color-black);
+  font-family: var(--font-heading);
+  font-size: 0.6rem;
+  font-weight: 700;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  padding: 4px 10px;
+  border-radius: var(--radius-full);
+  margin-bottom: var(--space-xs);
+}
+
+.spec-card__name {
+  font-family: var(--font-display);
+  font-size: clamp(1.6rem, 3vw, 2.4rem);
+  font-weight: 700;
+  color: var(--color-cream);
+  line-height: 1.05;
+  margin-bottom: 8px;
+}
+
+.spec-card__desc {
+  font-size: 0.85rem;
+  color: var(--color-text-muted);
+  line-height: 1.65;
+  margin-bottom: var(--space-sm);
+  max-width: 42ch;
+}
+
+.spec-card__footer {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.spec-card__price {
+  font-family: var(--font-display);
+  font-size: 1.8rem;
+  font-weight: 700;
+  color: var(--color-gold-light);
+  line-height: 1;
+}
+
+.spec-card__price small {
+  font-size: 0.9rem;
+  color: var(--color-text-muted);
+  font-weight: 400;
+}
+
+.spec-card__cta {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  font-family: var(--font-heading);
+  font-size: 0.7rem;
+  font-weight: 600;
+  letter-spacing: 0.15em;
+  text-transform: uppercase;
+  padding: 0.5rem 1rem;
+  border-radius: var(--radius-full);
+  border: 1px solid var(--color-gold);
+  color: var(--color-gold);
+  transition: all var(--transition-base);
+}
+
+.spec-card__cta:hover,
+.spec-card:hover .spec-card__cta {
+  background: var(--color-gold);
+  color: var(--color-black);
+}
+
+/* Fallback bg para tarjetas de especialidades */
+.spec-card--romana  .spec-card__bg { background-color: #1a0a00; background-image: radial-gradient(ellipse at 60% 40%, rgba(201,100,12,0.3), transparent 70%); }
+.spec-card--mexicana .spec-card__bg { background-color: #0f0a00; background-image: radial-gradient(ellipse at 40% 60%, rgba(220,60,0,0.3), transparent 70%); }
+.spec-card--portobello .spec-card__bg { background-color: #0a0f00; background-image: radial-gradient(ellipse at 50% 50%, rgba(80,120,20,0.2), transparent 70%); }
+
+/* Real pizza image for featured */
+.spec-card--pizza-img .spec-card__bg {
+  background-image: url('../assets/pizza.png');
+}
+
+/* RESPONSIVE ESPECIALIDADES — ver mobile.css */
+
+/* ============================================
+   CTA BANNER — Fuego de acción
+   ============================================ */
+.cta-banner {
+  position: relative;
+  padding-block: var(--space-2xl);
+  overflow: hidden;
+  background: var(--color-black);
+}
+
+/* Fondo de fuego con la imagen de pizza como base */
+.cta-banner__bg {
+  position: absolute;
+  inset: 0;
+  background-image: url('../assets/pizza.png');
+  background-size: cover;
+  background-position: center;
+  z-index: 0;
+  filter: blur(3px) saturate(1.2);
+  transform: scale(1.05);
+}
+
+.cta-banner__overlay {
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(
+    135deg,
+    rgba(5,2,0,0.95) 0%,
+    rgba(30,12,0,0.88) 40%,
+    rgba(50,20,0,0.85) 60%,
+    rgba(5,2,0,0.95) 100%
+  );
+  z-index: 1;
+}
+
+/* Efecto de llama animada */
+.cta-banner__flames {
+  position: absolute;
+  inset: 0;
+  z-index: 2;
+  pointer-events: none;
+  background:
+    radial-gradient(ellipse at 20% 80%, rgba(255,80,0,0.15) 0%, transparent 50%),
+    radial-gradient(ellipse at 80% 80%, rgba(255,140,0,0.12) 0%, transparent 50%),
+    radial-gradient(ellipse at 50% 100%, rgba(255,60,0,0.2) 0%, transparent 40%);
+  animation: flamePulse 4s ease-in-out infinite alternate;
+}
+
+@keyframes flamePulse {
+  0%   { opacity: 0.6; }
+  50%  { opacity: 1; }
+  100% { opacity: 0.7; }
+}
+
+.cta-banner__content {
+  position: relative;
+  z-index: 3;
+  text-align: center;
+  max-width: 750px;
+  margin-inline: auto;
+}
+
+.cta-banner__eyebrow {
+  display: inline-block;
+  font-family: var(--font-heading);
+  font-size: 0.7rem;
+  letter-spacing: 0.35em;
+  text-transform: uppercase;
+  color: var(--color-amber);
+  margin-bottom: var(--space-sm);
+  border: 1px solid rgba(255,140,0,0.3);
+  padding: 4px 16px;
+  border-radius: var(--radius-full);
+}
+
+.cta-banner__title {
+  font-family: var(--font-display);
+  font-size: clamp(2.8rem, 6vw, 5.5rem);
+  font-weight: 700;
+  line-height: 1;
+  margin-bottom: var(--space-sm);
+  color: var(--color-cream);
+}
+
+.cta-banner__title em {
+  font-style: italic;
+  background: linear-gradient(135deg, #ff8c00, #ffd700, #ff8c00);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+
+.cta-banner__sub {
+  font-size: 1.1rem;
+  color: rgba(240,230,204,0.7);
+  max-width: 45ch;
+  margin-inline: auto;
+  line-height: 1.7;
+  margin-bottom: var(--space-lg);
+}
+
+.cta-banner__actions {
+  display: flex;
+  gap: var(--space-sm);
+  justify-content: center;
+  flex-wrap: wrap;
+}
+
+/* Botón especial del banner */
+.btn--fire {
+  background: linear-gradient(135deg, #ff6b00, #ff8c00, #ffa500);
+  color: #0a0a0a;
+  font-weight: 700;
+  box-shadow: 0 0 30px rgba(255,100,0,0.4), 0 4px 20px rgba(255,100,0,0.3);
+  animation: fireBtnPulse 3s ease-in-out infinite;
+}
+
+.btn--fire:hover {
+  transform: translateY(-4px) scale(1.03);
+  box-shadow: 0 0 50px rgba(255,100,0,0.7), 0 8px 30px rgba(255,100,0,0.5);
+}
+
+@keyframes fireBtnPulse {
+  0%, 100% { box-shadow: 0 0 30px rgba(255,100,0,0.4), 0 4px 20px rgba(255,100,0,0.3); }
+  50%       { box-shadow: 0 0 50px rgba(255,140,0,0.6), 0 4px 30px rgba(255,140,0,0.5); }
+}
+
+/* Horario decorativo en CTA */
+.cta-banner__hours {
+  display: flex;
+  justify-content: center;
+  gap: var(--space-md);
+  margin-top: var(--space-md);
+  flex-wrap: wrap;
+  background: rgba(255, 140, 0, 0.1);
+  padding: 1rem var(--space-md);
+  border-radius: 8px;
+  border-left: 4px solid var(--color-gold);
+}
+
+.cta-banner__hour-item {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  font-family: var(--font-heading);
+  font-size: 0.95rem;
+  font-weight: 600;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: var(--color-text-primary);
+}
+
+.cta-banner__hour-item::before {
+  content: '●';
+  color: var(--color-gold);
+  font-size: 0.5rem;
+}
+
+/* ============================================
+   GALERÍA / SHOWCASE MINI
+   ============================================ */
+.showcase {
+  padding-block: var(--space-xl) var(--space-md);
+  background: var(--color-black);
+}
+
+.showcase__strip {
+  display: flex;
+  gap: 12px;
+  overflow-x: auto;
+  padding-bottom: var(--space-xs);
+  scroll-snap-type: x mandatory;
+  -webkit-overflow-scrolling: touch;
+  scrollbar-width: none;
+  justify-content: center;
+  align-items: center;
+  padding-inline: var(--space-md);
+}
+.showcase__strip::-webkit-scrollbar { display: none; }
+
+.showcase__item {
+  flex-shrink: 0;
+  width: 220px;
+  height: 220px;
+  border-radius: var(--radius-md);
+  overflow: hidden;
+  position: relative;
+  scroll-snap-align: center;
+  border: 1px solid var(--color-border);
+  transition: transform var(--transition-slow), border-color var(--transition-base);
+}
+
+.showcase__item:hover {
+  transform: scale(1.04);
+  border-color: rgba(201,150,12,0.5);
+}
+
+.showcase__item img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  transition: transform var(--transition-medium);
+}
+
+.showcase__item:hover img {
+  transform: scale(1.1);
+}
+
+.showcase__item-label {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  padding: var(--space-xs) var(--space-sm);
+  background: linear-gradient(to top, rgba(0,0,0,0.85), transparent);
+  font-family: var(--font-heading);
+  font-size: 0.7rem;
+  letter-spacing: 0.15em;
+  text-transform: uppercase;
+  color: var(--color-cream);
+}
+
+/* Tarjetas decorativas para items sin foto real */
+.showcase__item--deco {
+  background: var(--grad-card);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 5rem;
+  flex-direction: column;
+  gap: var(--space-xs);
+}
+
+.showcase__item--deco span {
+  font-family: var(--font-heading);
+  font-size: 0.65rem;
+  letter-spacing: 0.15em;
+  text-transform: uppercase;
+  color: var(--color-gold);
+}
+
+/* ============================================
+   MOMENTS — Sección emocional con fotos de gente
+   ============================================ */
+.moments {
+  padding: var(--space-xl) 0 calc(var(--space-xl) * 1.2);
+  background: var(--color-bg);
+}
+
+/* Grid editorial: foto grande izquierda + 2 apiladas derecha */
+.moments__grid {
+  display: grid;
+  grid-template-columns: 3fr 2fr;
+  grid-template-rows: 1fr 1fr;
+  gap: 4px;
+  margin-top: var(--space-lg);
+  max-width: 1300px;
+  margin-inline: auto;
+  padding: 0 var(--space-md);
+  height: 580px;
+}
+
+/* Foto principal — ocupa toda la columna izquierda */
+.moments__item--main {
+  grid-row: span 2;
+}
+
+/* Fotos secundarias — derecha, una arriba una abajo */
+.moments__item--side {
+  /* fluyen naturalmente en las 2 filas */
+}
+
+/* Base de cada item */
+.moments__item {
+  position: relative;
+  overflow: hidden;
+  border-radius: 4px;
+  background: var(--color-surface);
+}
+
+.moments__item img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+  transition: transform 0.6s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+}
+
+.moments__item:hover img {
+  transform: scale(1.04);
+}
+
+/* Caption siempre visible en la parte inferior */
+.moments__caption {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  padding: 2rem 1.5rem 1.4rem;
+  background: linear-gradient(to top, rgba(0,0,0,0.78) 0%, rgba(0,0,0,0.3) 60%, transparent 100%);
+  transform: translateY(4px);
+  transition: transform 0.35s ease;
+}
+
+.moments__item:hover .moments__caption {
+  transform: translateY(0);
+}
+
+.moments__caption-tag {
+  display: inline-block;
+  font-family: var(--font-heading);
+  font-size: 0.62rem;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  color: var(--color-gold);
+  margin-bottom: 0.3rem;
+}
+
+.moments__caption-text {
+  font-family: var(--font-body, sans-serif);
+  font-size: 0.95rem;
+  color: rgba(255,255,255,0.92);
+  margin: 0;
+  line-height: 1.3;
+}
+
+/* En la foto principal el texto es más grande */
+.moments__item--main .moments__caption-text {
+  font-size: 1.15rem;
+}
+
+@media (max-width: 900px) {
+  .moments__grid {
+    grid-template-columns: 1fr 1fr;
+    grid-template-rows: 260px 260px;
+    height: auto;
+  }
+  .moments__item--main {
+    grid-row: span 1;
+    grid-column: span 2;
+  }
+}
+
+@media (max-width: 540px) {
+  .moments__grid {
+    grid-template-columns: 1fr;
+    grid-template-rows: auto;
+    height: auto;
+    gap: 6px;
+  }
+  .moments__item--main,
+  .moments__item--side {
+    grid-column: span 1;
+    aspect-ratio: 4/3;
+  }
+}
+
+/* ============================================
+   PROMO BADGE (sección pequeña entre reviews y CTA)
+   ============================================ */
+.promo-strip {
+  background: var(--grad-gold);
+  padding-block: var(--space-sm);
+  overflow: hidden;
+  position: relative;
+}
+
+.promo-strip__track {
+  display: flex;
+  gap: var(--space-xl);
+  animation: marqueeScroll 18s linear infinite;
+  width: max-content;
+}
+
+@keyframes marqueeScroll {
+  from { transform: translateX(0); }
+  to   { transform: translateX(-50%); }
+}
+
+.promo-strip__item {
+  display: flex;
+  align-items: center;
+  gap: var(--space-xs);
+  font-family: var(--font-heading);
+  font-size: 0.75rem;
+  font-weight: 700;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  color: var(--color-black);
+  white-space: nowrap;
+}
+
+.promo-strip__sep {
+  color: rgba(0,0,0,0.3);
+  font-size: 0.5rem;
+}
+
+/* ============================================
+   SERVICIO A DOMICILIO - DELIVERY
+   ============================================ */
+.delivery-service {
+  padding-block: var(--space-2xl);
+  background: linear-gradient(135deg, rgba(10,10,10,0.95) 0%, rgba(20,15,10,0.9) 100%);
+  position: relative;
+  overflow: hidden;
+}
+
+.delivery-service::before {
+  content: '';
+  position: absolute;
+  top: -50%;
+  right: -10%;
+  width: 500px;
+  height: 500px;
+  background: radial-gradient(circle, rgba(255,140,0,0.08) 0%, transparent 70%);
+  border-radius: 50%;
+  pointer-events: none;
+}
+
+.delivery__features {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+  gap: var(--space-lg);
+  margin-top: var(--space-xl);
+  position: relative;
+  z-index: 1;
+}
+
+.delivery__feature {
+  background: linear-gradient(135deg, rgba(255,140,0,0.05) 0%, rgba(255,140,0,0.02) 100%);
+  border: 1px solid rgba(255,140,0,0.2);
+  border-radius: var(--radius-lg);
+  padding: var(--space-lg);
+  text-align: center;
+  transition: all var(--transition-slow);
+  position: relative;
+  overflow: hidden;
+}
+
+.delivery__feature::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 3px;
+  background: linear-gradient(90deg, transparent, var(--color-gold), transparent);
+  opacity: 0;
+  transition: opacity var(--transition-base);
+}
+
+.delivery__feature:hover {
+  background: linear-gradient(135deg, rgba(255,140,0,0.12) 0%, rgba(255,140,0,0.05) 100%);
+  border-color: rgba(255,140,0,0.4);
+  transform: translateY(-8px);
+  box-shadow: 0 20px 40px rgba(255,140,0,0.1);
+}
+
+.delivery__feature:hover::before {
+  opacity: 1;
+}
+
+.delivery__feature-icon {
+  font-size: 3rem;
+  line-height: 1;
+  margin-bottom: var(--space-md);
+  display: inline-block;
+  transition: transform var(--transition-base);
+}
+
+.delivery__feature:hover .delivery__feature-icon {
+  transform: scale(1.15) rotate(5deg);
+}
+
+.delivery__feature-title {
+  font-family: var(--font-heading);
+  font-size: 1.25rem;
+  font-weight: 700;
+  color: var(--color-gold-light);
+  margin-bottom: var(--space-sm);
+  line-height: 1.3;
+}
+
+.delivery__feature-desc {
+  font-size: 0.95rem;
+  color: var(--color-text-muted);
+  line-height: 1.7;
+  transition: color var(--transition-base);
+}
+
+.delivery__feature:hover .delivery__feature-desc {
+  color: var(--color-text-primary);
+}
+
+.delivery__cta {
+  display: flex;
+  justify-content: center;
+  margin-top: var(--space-2xl);
+  position: relative;
+  z-index: 1;
+}
+
+.delivery__cta .btn {
+  padding: 1rem 2.5rem;
+}

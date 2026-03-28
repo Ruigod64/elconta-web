@@ -1,0 +1,56 @@
+{
+  "name": "El Conta Pizzas",
+  "short_name": "El Conta",
+  "description": "Pizzas artesanales de proceso lento. Del Horno a tu Mesa.",
+  "start_url": "/index.html",
+  "display": "standalone",
+  "background_color": "#0a0a0a",
+  "theme_color": "#c9960c",
+  "orientation": "any",
+  "lang": "es",
+  "categories": ["food", "restaurant"],
+  "icons": [
+    {
+      "src": "assets/logo.jpeg",
+      "sizes": "192x192",
+      "type": "image/jpeg",
+      "purpose": "any maskable"
+    },
+    {
+      "src": "assets/logo.jpeg",
+      "sizes": "512x512",
+      "type": "image/jpeg",
+      "purpose": "any maskable"
+    }
+  ],
+  "shortcuts": [
+    {
+      "name": "Ver Menú",
+      "short_name": "Menú",
+      "description": "Ver el menú completo de El Conta Pizzas",
+      "url": "/index.html#menu",
+      "icons": [{ "src": "assets/logo.jpeg", "sizes": "192x192" }]
+    },
+    {
+      "name": "Pedir por WhatsApp",
+      "short_name": "Pedir",
+      "description": "Hacer un pedido directamente por WhatsApp",
+      "url": "https://wa.me/523515095162?text=Hola%2C%20quiero%20hacer%20un%20pedido%20%F0%9F%8D%95",
+      "icons": [{ "src": "assets/logo.jpeg", "sizes": "192x192" }]
+    }
+  ],
+  "screenshots": [
+    {
+      "src": "assets/chef.jpeg",
+      "sizes": "890x1200",
+      "type": "image/jpeg",
+      "label": "Chef Ernesto Hernández con pizza de camarones"
+    },
+    {
+      "src": "assets/pizza.png",
+      "sizes": "710x808",
+      "type": "image/png",
+      "label": "Pizza artesanal El Conta"
+    }
+  ]
+}

@@ -1,0 +1,70 @@
+/* ============================================
+   VARIABLES — El Conta Pizzas Design System
+   ============================================ */
+
+:root {
+  /* Palette */
+  --color-black:       #0a0a0a;
+  --color-black-soft:  #111111;
+  --color-black-card:  #161616;
+  --color-gold:        #c9960c;
+  --color-gold-light:  #e8b31a;
+  --color-gold-pale:   #f5d87a;
+  --color-amber:       #ff8c00;
+  --color-amber-warm:  #ff6b00;
+  --color-orange:      #e05c00;
+  --color-cream:       #fdf3dc;
+  --color-text:        #f0e6cc;
+  --color-text-primary: #f0e6cc;
+  --color-text-muted:  #a08050;
+  --color-border:      rgba(201,150,12,0.25);
+
+  /* Gradients */
+  --grad-gold:   linear-gradient(135deg, #c9960c 0%, #f5d87a 50%, #c9960c 100%);
+  --grad-fire:   linear-gradient(180deg, #ff8c00 0%, #e05c00 60%, #c9960c 100%);
+  --grad-dark:   linear-gradient(180deg, #0a0a0a 0%, #161616 100%);
+  --grad-hero:   linear-gradient(135deg, rgba(10,10,10,0.85) 0%, rgba(22,10,0,0.6) 100%);
+  --grad-card:   linear-gradient(145deg, #1a1400 0%, #0f0c00 100%);
+
+  /* Typography */
+  --font-display: 'Cormorant Garamond', 'Georgia', serif;
+  --font-heading: 'Oswald', 'Arial Narrow', sans-serif;
+  --font-body:    'Raleway', 'Helvetica Neue', sans-serif;
+  --font-accent:  'Playfair Display', 'Georgia', serif;
+
+  /* Spacing */
+  --space-xs:   0.5rem;
+  --space-sm:   1rem;
+  --space-md:   2rem;
+  --space-lg:   4rem;
+  --space-xl:   6rem;
+  --space-2xl:  10rem;
+
+  /* Layout */
+  --max-width:    1280px;
+  --nav-height:   80px;
+  --radius-sm:    6px;
+  --radius-md:    12px;
+  --radius-lg:    24px;
+  --radius-full:  9999px;
+
+  /* Shadows */
+  --shadow-gold:    0 0 40px rgba(201,150,12,0.35);
+  --shadow-amber:   0 0 60px rgba(255,140,0,0.25);
+  --shadow-card:    0 8px 40px rgba(0,0,0,0.6);
+  --shadow-text:    0 2px 20px rgba(0,0,0,0.8);
+
+  /* Transitions */
+  --transition-fast:   150ms ease;
+  --transition-base:   300ms ease;
+  --transition-slow:   600ms cubic-bezier(0.16, 1, 0.3, 1);
+  --transition-medium: 800ms cubic-bezier(0.16, 1, 0.3, 1);
+  --transition-spring: 800ms cubic-bezier(0.34, 1.56, 0.64, 1);
+
+  /* Z-index layers */
+  --z-base:    1;
+  --z-card:    10;
+  --z-nav:     100;
+  --z-overlay: 200;
+  --z-cursor:  9999;
+}
